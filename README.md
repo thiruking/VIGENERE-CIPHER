@@ -1,3 +1,8 @@
+## NAME : THIRUMALAI K
+## REG NO : 212224240176
+## DATE : 31/01/2026
+## DEPT : AIML
+
 # VIGENERE-CIPHER
 ## EX. NO: 4
  
@@ -31,6 +36,71 @@ STEP-8: Repeat the above steps to generate the entire cipher text.
 
 ## PROGRAM
 
+```C
+#include <stdio.h>
+#include <string.h>
+
+// Encryption function
+void vigenereEncrypt(char text[], char key[]) {
+    int textLen = strlen(text);
+    int keyLen = strlen(key);
+
+    for (int i = 0; i < textLen; i++) {
+        char c = text[i];
+
+        if (c >= 'A' && c <= 'Z') {
+            text[i] = ((c - 'A' + (key[i % keyLen] - 'A')) % 26) + 'A';
+        }
+        else if (c >= 'a' && c <= 'z') {
+            text[i] = ((c - 'a' + (key[i % keyLen] - 'A')) % 26) + 'a';
+        }
+    }
+}
+
+// Decryption function
+void vigenereDecrypt(char text[], char key[]) {
+    int textLen = strlen(text);
+    int keyLen = strlen(key);
+
+    for (int i = 0; i < textLen; i++) {
+        char c = text[i];
+
+        if (c >= 'A' && c <= 'Z') {
+            text[i] = ((c - 'A' - (key[i % keyLen] - 'A') + 26) % 26) + 'A';
+        }
+        else if (c >= 'a' && c <= 'z') {
+            text[i] = ((c - 'a' - (key[i % keyLen] - 'A') + 26) % 26) + 'a';
+        }
+    }
+}
+
+int main() {
+    char message[100];
+    char key[50];
+
+    printf("Enter the message: ");
+    scanf("%s", message);
+
+    printf("Enter the key: ");
+    scanf("%s", key);
+
+    printf("\nOriginal Message: %s\n", message);
+
+    vigenereEncrypt(message, key);
+    printf("Encrypted Message: %s\n", message);
+
+    vigenereDecrypt(message, key);
+    printf("Decrypted Message: %s\n", message);
+
+    return 0;
+}
+
+```
+
 ## OUTPUT
+<img width="476" height="315" alt="image" src="https://github.com/user-attachments/assets/ad6c3283-2101-48b2-b6b8-4dc066c2fe9b" />
+
 
 ## RESULT
+
+Thus, the C program to implement Vigenere Cipher encryption and decryption was executed successfully.
